@@ -22,10 +22,7 @@ namespace Lab2.Models
 
         public override void Update()
         {
-            if (Player.X < X)
-            {
-                X++;
-            }
+           
         }
 
 
