@@ -1,48 +1,58 @@
-﻿using Lab2.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿
+using Lab2;
+using Lab2.Models;
+using System.Drawing;
+using System.Xml.Linq;
 
-namespace Lab2.Models
+class Rat : Enemy
 {
-    class Rat:Enemy
+    private static readonly Random random = new Random();
+
+    private LevelData levelData;
+
+    public Rat(LevelData levelData)
     {
-        private static readonly Random random = new Random();
+        this.levelData = levelData;
 
-        public Rat()
+        Name = "Rat";
+        HP = 10;
+        Symbol = 'r';
+        Color = ConsoleColor.Red;
+
+        AttackDice = new Dice(1, 6, 3);
+        DefenceDice = new Dice(1, 6, 1);
+    }
+
+    public override void Update()
+    {
+        int direction = random.Next(4);
+
+        int newX = X;
+        int newY = Y;
+
+        switch (direction)
         {
-            Name = "Rat";
-            HP = 10;
-            Symbol = 'r';
-            Color = ConsoleColor.Red;
+            case 0:
+                newX++;
+                break;
 
-            AttackDice = new Dice(1, 6, 3);
-            DefenceDice = new Dice(1, 6, 3);
+            case 1:
+                newX--;
+                break;
 
+            case 2:
+                newY++;
+                break;
+
+            case 3:
+                newY--;
+                break;
         }
-        public override void Update()
+
+        if (!levelData.WallAhead(newX, newY))
         {
-            int direction = random.Next(4);
-
-            switch (direction)
-            {
-                case 0:
-                    X++;
-                    break;
-
-                case 1:
-                    X--;
-                    break;
-
-                case 2:
-                    Y++;
-                    break;
-
-                case 3:
-                    Y--;
-                    break;
-            }
+            X = newX;
+            Y = newY;
         }
     }
 }

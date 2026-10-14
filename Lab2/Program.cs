@@ -1,4 +1,5 @@
 ﻿
+using System.Linq;
 using Lab2;
 using Lab2.Models;
 
@@ -53,14 +54,24 @@ while (true)
     }
 
         if (!wallAhead)
-        {
+    {
         Console.SetCursorPosition(player.X, player.Y);
         Console.Write(' ');
         player.X = newX;
-        player.Y = newY;        
+        player.Y = newY;
+        levelData.SetPlayerForSnakes(player);
         player.Draw();
         
     }
+
+    foreach (Enemy enemy in levelData.Elements.OfType<Enemy>())
+    {
+        Console.SetCursorPosition(enemy.X, enemy.Y);
+        Console.Write(' ');
+
+        enemy.Update();
+        enemy.Draw();
+    }    
 
 }
 
