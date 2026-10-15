@@ -17,6 +17,7 @@ Player player = new Player();
 
 player.X = levelData.PlayerStartX;
 player.Y = levelData.PlayerStartY;
+levelData.SetPlayerForSnakes(player);
 
 player.Draw();
 
@@ -42,7 +43,6 @@ while (true)
             newY++;
             break;
     }
-
     bool wallAhead = false;
     foreach (LevelElement element in levelData.Elements)
     {
@@ -59,8 +59,8 @@ while (true)
         Console.Write(' ');
         player.X = newX;
         player.Y = newY;
-        levelData.SetPlayerForSnakes(player);
         player.Draw();
+
         
     }
 

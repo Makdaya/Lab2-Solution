@@ -14,11 +14,16 @@ namespace Lab2
 
         public int PlayerStartX { get; private set; }
         public int PlayerStartY { get; private set; }
+        public int LevelWidth { get; private set; }
+        public int LevelHeight { get; private set; }
+
         public void Load(string filename)
         {
             elements.Clear();
 
             String[] Lines = File.ReadAllLines(filename);
+            LevelHeight = Lines.Length;
+            LevelWidth = Lines.Max(line => line.Length);
 
             for (int i = 0; i < Lines.Length; i++)
             {

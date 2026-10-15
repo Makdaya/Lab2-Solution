@@ -48,11 +48,12 @@ namespace Lab2.Models
                 newY -= Math.Sign(dy);
             }
 
-            if (newX >= 0 && newY >= 0 &&
-                !levelData.WallAhead(newX, newY))
+            if (newX >= 0 && newY >= 0 && !levelData.WallAhead(newX, newY) && newX < levelData.LevelWidth && newY < levelData.LevelHeight)
+
             {
                 X = newX;
                 Y = newY;
+                
             }
         }
 
