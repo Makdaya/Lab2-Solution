@@ -8,10 +8,15 @@ namespace Lab2.Models
     {
         public string Name { get; set; }
         public int HP { get; set; }
+        public void TakeDamage(int damage)
+        {
+            HP = Math.Max(0, HP - damage);
+        }
         public Dice AttackDice { get; set; }
 
         public Dice DefenceDice { get; set; }
 
         public abstract void Update();
+
     }
 }

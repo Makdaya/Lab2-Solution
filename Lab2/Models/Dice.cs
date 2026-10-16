@@ -11,7 +11,11 @@ namespace Lab2.Models
         private int sidesPerDice;
         private int modifier;
         private static readonly Random random = new Random();
-            
+
+        public override string ToString()
+        {
+            return $"{numberOfDice}d{sidesPerDice}+{modifier}";
+        }
         public Dice(int numberOfDice, int sidesPerDice, int modifier)
         {
             this.numberOfDice = numberOfDice;

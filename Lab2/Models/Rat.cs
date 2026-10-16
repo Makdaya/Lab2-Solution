@@ -3,6 +3,7 @@ using Lab2;
 using Lab2.Models;
 using System.Drawing;
 using System.Xml.Linq;
+using System.Linq;
 
 class Rat : Enemy
 {
@@ -49,7 +50,14 @@ class Rat : Enemy
                 break;
         }
 
-        if (!levelData.WallAhead(newX, newY))
+
+        bool enemyAhead = levelData.Elements
+            .OfType<Enemy>()
+            .Any(enemy => enemy != this &&
+                          enemy.X == newX &&
+                          enemy.Y == newY);
+
+        if (!levelData.WallAhead(newX, newY) && !enemyAhead)
         {
             X = newX;
             Y = newY;

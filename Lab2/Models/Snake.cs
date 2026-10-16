@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using System.Linq;
 
 namespace Lab2.Models
 {
@@ -46,6 +47,17 @@ namespace Lab2.Models
             else if (dy != 0)
             {
                 newY -= Math.Sign(dy);
+            }
+
+            if (newX == player.X && newY == player.Y)
+                return;
+
+            foreach (Enemy enemy in levelData.Elements.OfType<Enemy>())
+            {
+                if (enemy != this && enemy.X == newX && enemy.Y == newY)
+                {
+                    return;
+                }
             }
 
             if (newX >= 0 && newY >= 0 && !levelData.WallAhead(newX, newY) && newX < levelData.LevelWidth && newY < levelData.LevelHeight)
