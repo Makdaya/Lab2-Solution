@@ -15,7 +15,7 @@ namespace Lab2.Models
         {
             this.levelData = leveldata;
             Name = "Snake";
-            Symbol = 'S';
+            Symbol = 's';
             HP = 25;
             Color = ConsoleColor.Yellow;
 

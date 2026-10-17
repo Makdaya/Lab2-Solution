@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Xml.Linq;
 using System.Linq;
 
+namespace Lab2.Models;
 class Rat : Enemy
 {
     private static readonly Random random = new Random();
